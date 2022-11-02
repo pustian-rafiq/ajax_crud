@@ -38,9 +38,35 @@
 
             },
             error:function(err){
-              console.log(err);
+              let errors = err.responseJSON;
+              console.log("err",errors)
+                $.each( errors.errors, function( key, value ) {
+                $("#error").append('<span class="text-danger">'+ value +'</span></br>');
+              });
             }
-          })
+          });
+
          })
+
+         // close modal
+           $(document).on('click','#closeAddModal', function(e){
+            console.log("error")
+           $('#error').html('')
+           });
+
+         
        });
+
+        // function printErrorMsg (msg) {
+
+        //         $(".print-error-msg").find("ul").html('');
+        //         $(".print-error-msg").css('display','block');
+        //         $.each( msg, function( key, value ) {
+        //             $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+
+        //         });
+
+        // }
+
+  
     </script>
