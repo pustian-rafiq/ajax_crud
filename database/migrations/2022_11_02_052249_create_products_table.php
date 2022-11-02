@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_name');
             $table->double('sell_price');
-            $table->double('discount_price');
+            $table->double('discount_price')->default(0);
             $table->timestamps();
         });
     }
