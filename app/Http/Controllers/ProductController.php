@@ -8,7 +8,7 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function ShowProducts(){
-        $products= Product::all();
+        $products= Product::latest()->paginate(5);
         return view('product.index', compact('products'));
     }
 
@@ -39,5 +39,3 @@ class ProductController extends Controller
         // return $request->all();
     }
 }
-
-

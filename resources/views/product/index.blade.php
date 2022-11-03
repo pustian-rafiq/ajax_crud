@@ -20,7 +20,7 @@
              <div class="card-body">
                 <h5 class="card-title d-inline">Show ALl Products</h5>
                 <a href="" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</a>
-                  <table class="table table-striped table-hover mt-3">
+                  <table id="tableId" class="table table-striped table-hover mt-3">
                     <thead>
                       <tr>
                         <th scope="col">SL No</th>
@@ -31,19 +31,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach ($products as $product)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>200</td>
-                        <td>300</td>
+                        <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
+                        {{-- <th scope="row">{{ $key+1 }}</th> --}}
+                        <td>{{ $product->product_name }}</td>
+                        <td>{{ $product->sell_price }}</td>
+                        <td>{{ $product->discount_price }}</td>
                         <td>
                           <a href="" class="btn btn-success">Edit</a>
                           <a href="" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
-                      
+                      @endforeach 
                     </tbody>
                   </table>
+                  {{ $products->links() }}
              </div>
           </div>
         </div>

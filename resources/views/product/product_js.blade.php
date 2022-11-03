@@ -34,6 +34,9 @@
               if(res.status === "success"){
                 $('#addModal').modal('hide');
                 $('#addProductForm')[0].reset();
+
+                // Reload table data after add product
+                $('#tableId').load(location.href+' #tableId');
               }
 
             },
