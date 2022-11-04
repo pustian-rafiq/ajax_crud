@@ -39,7 +39,16 @@
                         <td>{{ $product->sell_price }}</td>
                         <td>{{ $product->discount_price }}</td>
                         <td>
-                          <a href="" class="btn btn-success">Edit</a>
+                          <a href="" 
+                          class="btn btn-success"
+                          data-bs-toggle="modal" 
+                          data-bs-target="#editModal"
+                          id="edit_form"
+                          data-id="{{ $product->id }}"
+                          data-name="{{ $product->product_name }}"
+                          data-price="{{ $product->sell_price }}"
+                          data-discount="{{ $product->discount_price }}"
+                          >Edit</a>
                           <a href="" class="btn btn-danger">Delete</a>
                         </td>
                       </tr>
@@ -55,5 +64,6 @@
  
    @include('product.product_js')
    @include('product.add_product_modal')
+   @include('product.edit_product_modal')
   </body>
 </html>

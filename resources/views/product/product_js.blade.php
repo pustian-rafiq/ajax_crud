@@ -60,6 +60,21 @@
          
        });
 
+      //  show edit data in the Modal
+      $(document).on('click','#edit_form', function(e){
+
+        let id = $(this).data('id');
+        let product_name = $(this).data('name');
+        let sell_price = $(this).data('price');
+        let discount_price = $(this).data('discount');
+
+        console.log(product_name);
+        $('#update_product_name').val(product_name)
+        $('#update_sell_price').val(sell_price)
+        $('#update_discount_price').val(discount_price)
+
+      })
+
         // function printErrorMsg (msg) {
 
         //         $(".print-error-msg").find("ul").html('');
