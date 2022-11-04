@@ -65,4 +65,9 @@ class ProductController extends Controller
         ]);
         // return $request->all();
     }
+
+    public function DeleteProduct($id){
+        $product = Product::findOrFail($id);
+        $product->delete();
+    }
 }

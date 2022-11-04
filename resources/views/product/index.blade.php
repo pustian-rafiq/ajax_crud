@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> 
     <title>Laravel 9 Ajax Crud</title>
   </head>
   <body>
@@ -49,7 +49,7 @@
                           data-price="{{ $product->sell_price }}"
                           data-discount="{{ $product->discount_price }}"
                           >Edit</a>
-                          <a href="" class="btn btn-danger">Delete</a>
+                          <a href="{{ route('delete.product', $product->id) }}" class="btn btn-danger delete"  data-id="{{ $product->id }}">Delete</a>
                         </td>
                       </tr>
                       @endforeach 
@@ -65,5 +65,71 @@
    @include('product.product_js')
    @include('product.add_product_modal')
    @include('product.edit_product_modal')
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script type="text/javascript">
+
+// $(document).on("click", ".delete", function(e){
+//     e.preventDefault();
+//     url = $(this).attr("href");
+//     swal({
+//             title:"Do you want delete this item?",
+//             type: "warning",
+//             showCancelButton: true,
+//             confirmButtonClass: 'btn btn-success',
+//             cancelButtonClass: 'btn btn-danger',
+//             buttonsStyling: false,
+//             confirmButtonText: "Delete",
+//             cancelButtonText: "Cancel",
+//             closeOnConfirm: false,
+//             showLoaderOnConfirm: true,
+//         },
+//         function(isConfirm){
+//             if(isConfirm){
+//                 $.ajax({
+//                     url: url,
+//                     type: "POST",
+//                     success: function(resp){
+//                         // window.location.href = base_url + resp;
+//                         $('#tableId').load(location.href+' #tableId');
+//                     }
+//                 });
+//                 }
+            
+//         });
+//     });
+ 
+
+// Delete product with confirm message
+$(document).on("click", ".delete", function(e){
+        e.preventDefault();
+        // var link = $(this).attr("href");
+       var url = $(this).attr("href");
+           swal({
+             title: "Are you Want to delete?",
+             text: "Once Delete, This will be Permanently Delete!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+                  // window.location.href = link;
+                  $.ajax({
+                    url: url,
+                    type: "POST",
+                    success: function(resp){
+                        // window.location.href = base_url + resp;
+                        //reload table after deleting data
+                        $('#tableId').load(location.href+' #tableId');
+                    }
+                });
+             } else {
+               swal("Safe Data!");
+             }
+           });
+       });
+
+</script>
   </body>
 </html>

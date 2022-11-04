@@ -104,7 +104,6 @@
                 // Reload table data after add product
                 $('#tableId').load(location.href+' #tableId');
               }
-
             },
             error:function(err){
               let errors = err.responseJSON;
