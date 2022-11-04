@@ -68,12 +68,57 @@
         let sell_price = $(this).data('price');
         let discount_price = $(this).data('discount');
 
-        console.log(product_name);
+        $('#product_id').val(id)
         $('#update_product_name').val(product_name)
         $('#update_sell_price').val(sell_price)
         $('#update_discount_price').val(discount_price)
 
-      })
+      });
+
+      // update product data
+      $(document).on('click','.update_product', function(e){
+          e.preventDefault();
+
+          let product_id = $('#product_id').val();
+          let product_name = $('#update_product_name').val();
+          let sell_price = $('#update_sell_price').val();
+          let discount_price = $('#update_discount_price').val();
+
+          console.log(product_id+" "+product_name+" "+sell_price+" "+discount_price)
+
+          $.ajax({
+            url: "{{ route('update.product') }}",
+            method: "post",
+            data:{
+              product_id: product_id,
+              product_name: product_name,
+              sell_price:sell_price,
+              discount_price:discount_price
+            },
+            success: function(res){
+              console.log(res)
+              if(res.status === "success"){
+                $('#editModal').modal('hide');
+                $('#editProductForm')[0].reset();
+
+                // Reload table data after add product
+                $('#tableId').load(location.href+' #tableId');
+              }
+
+            },
+            error:function(err){
+              let errors = err.responseJSON;
+              console.log("err",errors)
+                $.each( errors.errors, function( key, value ) {
+                $("#error_update").append('<span class="text-danger">'+ value +'</span></br>');
+              });
+            }
+          });
+
+         });
+
+
+
 
         // function printErrorMsg (msg) {
 

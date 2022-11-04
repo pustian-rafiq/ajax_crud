@@ -38,4 +38,31 @@ class ProductController extends Controller
         ]);
         // return $request->all();
     }
+
+    // update product data
+    public function UpdateProduct(Request $request){
+
+        $validated = $request->validate([
+            'product_name' => 'required|unique:products',
+            'sell_price' => 'required',
+        ],
+        [
+            'product_name.required' => "Product name must be filled",
+            'product_name.unique' => "Product name must be unique",
+            'sell_price.required' => "Sell price must be filled",
+        ]);
+
+        Product::where('id',$request->product_id)->update([
+            'product_name' => $request->product_name,
+            'sell_price' => $request->sell_price,
+            'discount_price' => $request->discount_price,
+        ]);
+ 
+
+        return response()->json([
+            'status' => 'success'
+
+        ]);
+        // return $request->all();
+    }
 }

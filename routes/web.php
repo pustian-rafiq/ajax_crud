@@ -20,3 +20,4 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [ProductController::class, 'ShowProducts']);
 Route::post('/add/product', [ProductController::class, 'AddProduct'])->name('add.product');
+Route::post('/update/product', [ProductController::class, 'UpdateProduct'])->name('update.product');

@@ -9,6 +9,7 @@
       </div>
       <div class="modal-body">
         <form method="post" id="addProductForm">
+          @csrf
           <div id="error"></div>
             
             <div class="mb-3">
