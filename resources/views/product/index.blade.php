@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> 
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <title>Laravel 9 Ajax Crud</title>
   </head>
   <body>
@@ -17,6 +18,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
           <div class="card mt-5">
+            <p  id="message" style="display:none">Saved</p>
              <div class="card-body">
                 <h5 class="card-title d-inline">Show ALl Products</h5>
                 <a href="" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</a>
@@ -67,6 +69,8 @@
    @include('product.edit_product_modal')
 
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+   {!! Toastr::message() !!}
    <script type="text/javascript">
 
 // $(document).on("click", ".delete", function(e){
@@ -130,6 +134,30 @@ $(document).on("click", ".delete", function(e){
            });
        });
 
+</script>
+{{-- Toastr message --}}
+<script>
+    function ToastMessage(type,message) {
+            Command: toastr[type](message)
+
+              toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+          }
 </script>
   </body>
 </html>

@@ -34,7 +34,9 @@
               if(res.status === "success"){
                 $('#addModal').modal('hide');
                 $('#addProductForm')[0].reset();
-
+                ToastMessage("warning","New product added successfully!")
+              //   $("#myElem").show();
+              //  setTimeout(function() { $("#myElem").hide(); }, 5000);
                 // Reload table data after add product
                 $('#tableId').load(location.href+' #tableId');
               }
@@ -130,5 +132,6 @@
 
         // }
 
+        
   
     </script>
